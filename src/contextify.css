@@ -1,0 +1,28 @@
+.contextify{
+	--idle-background: #fff;
+	--idle-color: #373737;
+	--hover-background: #1056FF;
+	--hover-color: #fff;
+	position: fixed;
+	display: block;
+	top: 0;
+	left: 0;
+	padding: 8px;
+	background: #fff;
+}
+.contextify.dark{
+	--idle-background: #373737;
+	--idle-color: #fff;
+}
+
+.contextify > .contextify_item{
+	position: relative;
+	padding: 8px 10px;
+	background: var(--idle-background);
+	color: var(--idle-color);
+}
+
+.contextify > .contextify_item:hover{
+	background: var(--hover-background);
+	color: var(--hover-color);
+}
