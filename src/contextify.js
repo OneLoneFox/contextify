@@ -38,14 +38,13 @@ class Contextify {
 				case this.positions.BOTTOM_RIGHT:
 					leftOffset = referenceElementRect.left + referenceElementRect.width;
 					topOffset = referenceElement.top + referenceElementRect.height;
+					break;
 				default:
 					// fa q!
 					break;
 			};
 			this.domMenu.style.left = leftOffset+"px";
-			console.log(leftOffset, this.domMenu.style.left);
 			this.domMenu.style.top = topOffset+"px";
-			console.log(topOffset, this.domMenu.style.top);
 			document.body.appendChild(this.domMenu);
 
 			window.addEventListener("click", function selectHandler(e){
