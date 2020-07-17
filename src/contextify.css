@@ -7,8 +7,12 @@
 	display: block;
 	top: 0;
 	left: 0;
+	min-width: 100px;
 	padding: 8px;
 	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+	z-index: 1000;
 }
 .contextify.dark{
 	--idle-background: #373737;
@@ -17,7 +21,9 @@
 
 .contextify > .contextify_item{
 	position: relative;
-	padding: 8px 10px;
+	padding: 10px 16px;
+	border-radius: 6px;
+	cursor: pointer;
 	background: var(--idle-background);
 	color: var(--idle-color);
 }
