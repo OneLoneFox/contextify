@@ -18,6 +18,9 @@ class Contextify {
 
 	show(referenceElement, relativePosition = this.positions.BOTTOM_RIGHT){
 		return new Promise((resolve, reject) => {
+			if (typeof referenceElement === "string") {
+				referenceElement = document.querySelector(referenceElement);
+			}
 			let referenceElementRect = referenceElement.getBoundingClientRect();
 			let menuRect = this.domMenu.getBoundingClientRect();
 			let leftOffset = 0;
@@ -33,11 +36,11 @@ class Contextify {
 					break;
 				case this.positions.BOTTOM_LEFT:
 					leftOffset = referenceElementRect.let - menuRect.width;
-					topOffset = referenceElement.top + referenceElementRect.height;
+					topOffset = referenceElementRect.top + referenceElementRect.height;
 					break;
 				case this.positions.BOTTOM_RIGHT:
 					leftOffset = referenceElementRect.left + referenceElementRect.width;
-					topOffset = referenceElement.top + referenceElementRect.height;
+					topOffset = referenceElementRect.top + referenceElementRect.height;
 					break;
 				default:
 					// fa q!
@@ -45,21 +48,27 @@ class Contextify {
 			};
 			this.domMenu.style.left = leftOffset+"px";
 			this.domMenu.style.top = topOffset+"px";
-			document.body.appendChild(this.domMenu);
+			let menuInstance = document.body.appendChild(this.domMenu);
 
 			window.addEventListener("click", function selectHandler(e){
-				if (e.target.closest('.contextify') != this.domMenu) {
-					resolve(-1);
-					//reject("clicked outside context menu");
+				window.removeEventListener("click", selectHandler);
+				if (e.target.closest('.contextify') != menuInstance){
+					document.body.removeChild(menuInstance);
+					reject("clicked outside context menu");
 				}else{
-					window.removeEventListener("click", selectHandler);
 					let selectedItem = e.target.closest('.contextify_item');
 					if (selectedItem) {
-						document.body.removeChild(this.domMenu);
-						resolve(selectedItem.innerText);
+						let selectedItemIndex = Array.from(menuInstance.childNodes).indexOf(selectedItem);
+						let data = {
+							index: selectedItemIndex,
+							itemInstance: selectedItem,
+							value: selectedItem.innerText
+						}
+						document.body.removeChild(menuInstance);
+						resolve(data);
 					}else{
-						resolve(-1);
-						//reject("no item match");
+						document.body.removeChild(menuInstance);
+						reject("no item match");
 					}
 				}
 			})
