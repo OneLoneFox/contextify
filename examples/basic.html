@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contextify basic example</title>
+	<link rel="stylesheet" href="../src/contextify.css">
+	<style>
+		#block{
+			display: flex;
+			align-items: center;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 200px;
+			height: 200px;
+			box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="block">
+		<h1>Some content</h1>
+	</div>
+	<script type="text/javascript" src="../src/contextify.js"></script>
+	<script type="text/javascript">
+		var contextItems = ["RGB", "HEX", "HSL"];
+		var c = new Contextify(contextItems);
+
+		var block = document.getElementById('block');
+		block.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+			c.show(e.currentTarget).then((data) => {
+				console.log(data);
+			}).catch((err) => {
+				console.log('e: ' + err);
+			});
+		})
+
+	</script>
+</body>
+</html>
