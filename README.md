@@ -14,7 +14,11 @@ var context = new Contextify(contextItems);
  * outside an item (in the menu's padding for example)
  */
 // referenceElement by element reference (bruh)
-context.show(referenceElement)
+context.show(referenceElement).then((itemData) => {
+  // do something
+}).catch((err) => {
+  // do something else if context menu is dismissed
+});
 
 ```
 
@@ -30,3 +34,12 @@ The element to append the context menu to, can be a css selector or an element r
 The position [TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT] to place the menu at relative to the referenceElement
 
 Default: ```Contextify.positions.BOTTOM_RIGHT```
+### On resolve:
+Returns an object with the following properties
+```javascript
+{
+  index: selectedItemidex,
+  itemInstance: selectedItemInstance,
+  value: itemInnerText
+}
+```
