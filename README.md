@@ -29,4 +29,4 @@ The element to append the context menu to, can be a css selector or an element r
 
 The position [TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT] to place the menu at relative to the referenceElement
 
-Default: ```Dropily.positions.BOTTOM_RIGHT```
+Default: ```Contextify.positions.BOTTOM_RIGHT```
