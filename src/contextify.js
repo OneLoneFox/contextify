@@ -21,31 +21,42 @@ class Contextify {
 			if (typeof referenceElement === "string") {
 				referenceElement = document.querySelector(referenceElement);
 			}
+			let documentRect = document.body.getBoundingClientRect();
+			let documentMarginOffset = {
+				top: parseInt(window.getComputedStyle(document.body).marginTop),
+				left: parseInt(window.getComputedStyle(document.body).marginLeft),
+			}
 			let referenceElementRect = referenceElement.getBoundingClientRect();
 			let menuRect = this.domMenu.getBoundingClientRect();
+
+			let relativePositionRect = {
+				top: (referenceElementRect.top - documentRect.top) + documentMarginOffset.top,
+				left: (referenceElementRect.left - documentRect.left) + documentMarginOffset.left,
+			};
 			let leftOffset = 0;
 			let topOffset = 0;
 			switch (relativePosition) {
-					leftOffset = referenceElementRect.left - menuRect.width;
-					topOffset = referenceElementRect.top - menuRect.height;
 				case Contextify.positions.TOP_LEFT:
+					leftOffset = relativePositionRect.left - menuRect.width;
+					topOffset = relativePositionRect.top - menuRect.height;
 					break;
-					leftOffset = referenceElementRect.left + referenceElementRect.width;
-					topOffset = referenceElementRect.top - menuRect.height;
 				case Contextify.positions.TOP_RIGHT:
+					leftOffset = relativePositionRect.left + referenceElementRect.width;
+					topOffset = relativePositionRect.top - menuRect.height;
 					break;
-					leftOffset = referenceElementRect.let - menuRect.width;
-					topOffset = referenceElementRect.top + referenceElementRect.height;
 				case Contextify.positions.BOTTOM_LEFT:
+					leftOffset = relativePositionRect.let - menuRect.width;
+					topOffset = relativePositionRect.top + referenceElementRect.height;
 					break;
-					leftOffset = referenceElementRect.left + referenceElementRect.width;
-					topOffset = referenceElementRect.top + referenceElementRect.height;
 				case Contextify.positions.BOTTOM_RIGHT:
+					leftOffset = relativePositionRect.left + referenceElementRect.width;
+					topOffset = relativePositionRect.top + referenceElementRect.height;
 					break;
 				default:
 					// fa q!
 					break;
 			};
+
 			this.domMenu.style.left = leftOffset+"px";
 			this.domMenu.style.top = topOffset+"px";
 			let menuInstance = document.body.appendChild(this.domMenu);

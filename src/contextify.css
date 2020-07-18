@@ -3,7 +3,7 @@
 	--idle-color: #373737;
 	--hover-background: #1056FF;
 	--hover-color: #fff;
-	position: fixed;
+	position: absolute;
 	display: block;
 	top: 0;
 	left: 0;
