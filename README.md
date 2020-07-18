@@ -19,10 +19,14 @@ context.show(referenceElement)
 ```
 
 ## Methods
-```show(referenceElement, ?relativePosition)```
-### Arguments:
-#### ```referenceElement``` 
+### ```show(referenceElement, ?relativePosition)```
+#### Arguments:
+```referenceElement```
+
 The element to append the context menu to, can be a css selector or an element reference
-#### ```?relativePosition```
+
+```?relativePosition```
+
 The position [TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT] to place the menu at relative to the referenceElement
+
 Default: ```Dropily.positions.BOTTOM_RIGHT```
