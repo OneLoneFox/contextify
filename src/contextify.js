@@ -1,11 +1,11 @@
 class Contextify {
+	static positions = {
+		TOP_LEFT: 1,
+		TOP_RIGHT: 2,
+		BOTTOM_LEFT: 3,
+		BOTTOM_RIGHT: 4
+	}
 	constructor(_items, _props){
-		this.positions = {
-			TOP_LEFT: 1,
-			TOP_RIGHT: 2,
-			BOTTOM_LEFT: 3,
-			BOTTOM_RIGHT: 4
-		}
 		this.items = _items;
 		this.domMenu = document.createElement('div');
 		if (_props){
