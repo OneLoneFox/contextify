@@ -38,7 +38,7 @@ Default: ```Contextify.positions.BOTTOM_RIGHT```
 Returns an object with the following properties
 ```javascript
 {
-  index: selectedItemidex,
+  index: selectedItemIndex,
   itemInstance: selectedItemInstance,
   value: itemInnerText
 }
