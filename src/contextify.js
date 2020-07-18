@@ -16,7 +16,7 @@ class Contextify {
 		this._createItems();
 	}
 
-	show(referenceElement, relativePosition = this.positions.BOTTOM_RIGHT){
+	show(referenceElement, relativePosition = Contextify.positions.BOTTOM_RIGHT){
 		return new Promise((resolve, reject) => {
 			if (typeof referenceElement === "string") {
 				referenceElement = document.querySelector(referenceElement);
@@ -26,21 +26,21 @@ class Contextify {
 			let leftOffset = 0;
 			let topOffset = 0;
 			switch (relativePosition) {
-				case this.positions.TOP_LEFT:
 					leftOffset = referenceElementRect.left - menuRect.width;
 					topOffset = referenceElementRect.top - menuRect.height;
+				case Contextify.positions.TOP_LEFT:
 					break;
-				case this.positions.TOP_RIGHT:
 					leftOffset = referenceElementRect.left + referenceElementRect.width;
 					topOffset = referenceElementRect.top - menuRect.height;
+				case Contextify.positions.TOP_RIGHT:
 					break;
-				case this.positions.BOTTOM_LEFT:
 					leftOffset = referenceElementRect.let - menuRect.width;
 					topOffset = referenceElementRect.top + referenceElementRect.height;
+				case Contextify.positions.BOTTOM_LEFT:
 					break;
-				case this.positions.BOTTOM_RIGHT:
 					leftOffset = referenceElementRect.left + referenceElementRect.width;
 					topOffset = referenceElementRect.top + referenceElementRect.height;
+				case Contextify.positions.BOTTOM_RIGHT:
 					break;
 				default:
 					// fa q!
